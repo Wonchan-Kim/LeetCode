@@ -17,24 +17,19 @@ public:
         int windowsize=s1.size();
         // checking for 1st window
         int i=0;
-        while( i<windowsize && i<s2.size() ) // i<s2.size() -> taki i,s2 ki length se aage na nikal jae ; window s2 ki length se aage na nikal jae ; s1.size()>s2.size()
-        {
-            cnt2[s2[i]-'a']++;
-            i++;
+        int j = 0;
+        while(j < s2.size()){
+            cnt2[s2[j] - 'a']++;
+            
+            if(j - i + 1 == s1.size() && is_equal(cnt1, cnt2)) return true;
+            
+            if(j - i + 1 < s1.size()) j++;
+            else{
+                cnt2[s2[i] - 'a']--;
+                i++;
+                j++;
+            }
         }
-        if( is_equal(cnt1,cnt2) ) 
-            return 1;   // permutation present
-        
-        // for next windows
-        while( i<s2.length() ){
-            int add = s2[i]-'a';
-            cnt2[add]++;
-            int remove = s2[i-windowsize]-'a';
-            cnt2[remove]--;
-            if( is_equal(cnt1,cnt2) )  return 1;
-            i++;
-        }
-        return 0;  // s2 ki size tak traversed but can't find
-//we r comparing 1st window seperately as at time of first window we can't delete (i-windowsize)th element
+        return false;
     }
 };
