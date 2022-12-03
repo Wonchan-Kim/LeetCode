@@ -1,40 +1,43 @@
-class Solution {
-public:
-   int dfs(vector<vector<int>>&grid,int i,int j,int n,int m)
+class Solution 
+{
+  public:
+    bool valid(int i,int j,vector<vector<int>>& grid)
     {
-	//checking corner cases for moving in 4 direction up down left right
-        if(i>=0 and i<n and j>=0 and j<m and grid[i][j]==1)
-        {
-            grid[i][j]=0;//updating grid value
-            //counting all the island  
-            return 1+ dfs(grid,i+1,j,n,m)+dfs(grid,i-1,j,n,m)+dfs(grid,i,j+1,n,m)+dfs(grid,i,j-1,n,m);
-            
-        }
+        if(i>=0 && i<grid.size() && j>=0 && j<grid[0].size() && grid[i][j])
+            return 1;
         return 0;
     }
-    
-    
-    
-    int maxAreaOfIsland(vector<vector<int>>& grid) {
-        
-        int max_area=0;
+    void dfs(int i,int j,vector<vector<int>>& grid,int &val)
+    {
+        grid[i][j]=0;
+        val++;
+        if(valid(i+1,j,grid))
+          dfs(i+1,j,grid,val);
+        if(valid(i,j+1,grid))
+          dfs(i,j+1,grid,val);
+        if(valid(i-1,j,grid))
+          dfs(i-1,j,grid,val);
+        if(valid(i,j-1,grid))
+          dfs(i,j-1,grid,val);
+    }
+    int maxAreaOfIsland(vector<vector<int>>& grid) 
+    {
+        int ans=0;
         int n=grid.size();
         int m=grid[0].size();
-        //moving every point of grid  and updating its value when you travelled
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
-                if(grid[i][j]==1)
+                if(grid[i][j])
                 {
-                    int count=dfs(grid,i,j,n,m);
-					//finding maximum area
-                    max_area=max(max_area,count);
+                    int val=0;         
+                    dfs(i,j,grid,val);
+                    ans=max(ans,val);
                 }
             }
         }
-        return max_area;
-    
+        return ans;
     }
 };
 
