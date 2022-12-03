@@ -9,7 +9,7 @@ public:
         dfs(image, x, y - 1, val, color);
     }
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
-        auto val = image[sr][sc];
+        int val = image[sr][sc];
         dfs(image, sr, sc, val, color);
         return image;
         }
