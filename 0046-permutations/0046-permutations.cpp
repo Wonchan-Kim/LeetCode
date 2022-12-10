@@ -12,7 +12,7 @@ public:
             collection.push_back(save_ans);
             return;
         }
-        for(int i = 0; i < nums.size(); i++){
+        for(i = 0; i < nums.size(); i++){
             if(nums[i] != 11)
             {
                 save_ans.push_back(nums[i]);
@@ -27,6 +27,13 @@ public:
 };
 
 /*백트래킹??
+
+1 2 3 
+1
+
+
+
+
 1을 먼저 두면(a0) a1, a2, a3 
 a1 a2 a3
 a2 a1 a3
