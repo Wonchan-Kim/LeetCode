@@ -3,22 +3,22 @@ public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<int> save_ans;
         vector<vector<int>> collection;
-        permutation(0, nums, save_ans, collection);
+        permutation(nums, save_ans, collection);
         return collection;
     }
-    void permutation(int i, vector<int>&nums, vector<int>& save_ans, vector<vector<int>>& collection){
+    void permutation(vector<int>&nums, vector<int>& save_ans, vector<vector<int>>& collection){
         if(save_ans.size() == nums.size())
         {
             collection.push_back(save_ans);
             return;
         }
-        for(i = 0; i < nums.size(); i++){
+        for(int i = 0; i < nums.size(); i++){
             if(nums[i] != 11)
             {
                 save_ans.push_back(nums[i]);
                 int temp = nums[i];
                 nums[i] = 11;
-                permutation(i, nums, save_ans, collection);
+                permutation(nums, save_ans, collection);
                 nums[i] = temp;
                 save_ans.pop_back();
             }
