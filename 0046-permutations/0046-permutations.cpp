@@ -18,7 +18,7 @@ public:
                 save_ans.push_back(nums[i]);
                 int temp = nums[i];
                 nums[i] = 11;
-                permutation(i + 1, nums, save_ans, collection);
+                permutation(i, nums, save_ans, collection);
                 nums[i] = temp;
                 save_ans.pop_back();
             }
