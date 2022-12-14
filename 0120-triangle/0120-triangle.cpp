@@ -4,19 +4,13 @@ public:
          auto height = triangle.size()-1;
         if(height == 0)
             return triangle[0][0];
-        //cout << height << endl;
         while(height >= 2){
-            //cout << height << endl;
             for(int j = 0; j < triangle[height-1].size(); j++){
-                //cout << j << endl;
-                //cout << triangle[height-1][j] << ' ' << j <<endl;
                 triangle[height-1][j] += min(triangle[height][j], triangle[height][j+1]);
-                //cout << triangle[height-1][j];
             }
             height--;
         }
-        int ans = triangle[0][0]+ min(triangle[1][0], triangle[1][1]);
-        return ans;
+        return triangle[0][0]+ min(triangle[1][0], triangle[1][1]);
     }
 };
 
