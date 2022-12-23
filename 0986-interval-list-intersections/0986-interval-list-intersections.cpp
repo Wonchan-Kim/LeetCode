@@ -38,7 +38,17 @@ public:
 [2,3] [4,5]
 
 [max (1,2), min (3,5)], [max(1,4), min(5,6)]
-ignore the vector that was done searching, if max value of the vector was not considered, keep it 
-for compare with the other vector of another list.
+ignore the vector that was done searching, traverse to the next vector,
+if max value of the vector was not considered, keep it for compare with the other vector of another list.
 
+*/
+
+/* first trial fail
+[[0,2],[5,10],[13,23],[24,25]]
+[[1,5],[8,12],[15,24],[25,26]]
+
+reason : after comparing [5,10] and [8,12], vector of the secondList was kept for next comparison.
+when [13, 23] was passed into the function as parameter, the value of start became 13 and the value of the end was 12.
+As a result, the vector that contains [13,12] was pushed back into the answer.
+To prevent the error like this I added the code that ignores the case like this.
 */
